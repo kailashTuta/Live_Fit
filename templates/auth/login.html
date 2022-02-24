@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Login
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/auth/register/styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="container-fluid bg">
+    <section class="row justify-content-center">
+        <section class="col-12 col-sm-6 col-md-3">
+            <form class="form-container" action="/login" method="POST">
+                {%csrf_token %}
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="from-group col-md-12">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" />
+                    </div>
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-info btn-block">Login</button>
+            </form>
+            <div>
+                {% for msg in messages  %}
+                <div class="alert {{msg.tags}} alert-dismissible fade show" role="alert">
+                    {{ msg.message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+</section>
+
+{% endblock content %}

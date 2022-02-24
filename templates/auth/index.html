@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit
+{% endblock %}
+
+{% block content %}
+<h3>Welcome to LiveFit</h3>
+{% for msg in messages  %}
+<div class="alert {{msg.tags}} alert-dismissible fade show" role="alert">
+    {{ msg.message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+
+{% if user.is_authenticated%}
+<h3>Hello {{fname}}</h3>
+<a class="btn btn-primary" type="submit" href="/logout">Logout</a>
+<h4>You're successfully logged in</h4>
+{% endif %}
+
+
+
+{% endblock content %}
