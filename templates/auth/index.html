@@ -6,7 +6,6 @@ LiveFit
 {% endblock %}
 
 {% block content %}
-<h3>Welcome to LiveFit</h3>
 {% for msg in messages  %}
 <div class="alert {{msg.tags}} alert-dismissible fade show" role="alert">
     {{ msg.message }}
@@ -16,11 +15,10 @@ LiveFit
 </div>
 {% endfor %}
 
+<h3>Welcome to LiveFit</h3>
+
 {% if user.is_authenticated%}
-<h3>Hello {{name}}</h3>
 <h4>You're successfully logged in</h4>
 {% endif %}
-
-
 
 {% endblock content %}

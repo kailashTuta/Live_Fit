@@ -6,7 +6,7 @@ LiveFit | Login
 {% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static '/auth/register/styles.css' %}" />
+<link rel="stylesheet" href="{% static '/auth/login/styles.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -32,6 +32,8 @@ LiveFit | Login
 
                 <br>
                 <button type="submit" class="btn btn-info btn-block">Login</button>
+                <br>
+                <p>Don't have an account? <a href="/register">Register</a></p>
             </form>
             <div>
                 {% for msg in messages  %}

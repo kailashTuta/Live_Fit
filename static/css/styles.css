@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+}
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown-menu {
+  min-width: 0;
+}
+
+.dropdown-menu .dropdown-item {
+  white-space: normal;
+}
