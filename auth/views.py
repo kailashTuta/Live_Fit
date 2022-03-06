@@ -49,7 +49,8 @@ def register(request):
         myuser.last_name = lname
         myuser.is_active = False
         myuser.save()
-        messages.success(request, 'User created successfully')
+        messages.success(
+            request, 'User created successfully and Please Confirm your email')
 
         # Welcome Email
         subject = "Welcome to Live Fit"
@@ -89,8 +90,8 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            fname = user.first_name
-            return render(request, 'auth/index.html', {'fname': fname})
+            name = user.username
+            return redirect('home')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('login')
