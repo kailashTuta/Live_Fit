@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Live_Fit import settings
 from django.core.mail import send_mail, EmailMessage
@@ -120,3 +121,11 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, 'Invalid activation link')
         return render(request, 'mail/activation_failed.html')
+
+
+@login_required(login_url='login')
+def dashboard(request):
+    context = {
+        'user': request.user
+    }
+    return render(request, 'auth/dashboard.html', context)

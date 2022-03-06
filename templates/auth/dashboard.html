@@ -1,0 +1,95 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Account
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/auth/dashboard/styles.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="main">
+        <div class="row">
+            <div class="col-md-4 mt-1">
+                <div class="card text-center sidebar">
+                    <div class="card-body">
+                        <img src="" alt="" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                            <h3 class="text-warning">{{user}}</h3>
+                            <a href="/dashboard">Account</a>
+                            <a href="">Blogs</a>
+                            <a href="">Reports</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mt-1">
+                <div class="card mb-3 content">
+                    <h1 class="m-3 pt-3">About</h1>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Username</h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                {{user}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Email</h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                {{user.email}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>First Name</h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                {{user.first_name}}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Last Name</h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                {{user.last_name}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 content">
+                    <h1 class="m-3">Recent Blogs</h1>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Blog Title</h5>
+                            </div>
+                            <div class="col-md-9 text-secondary">
+                                blog description
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% comment %} {% if user.is_authenticated%}
+    <p>Username: {{user}}</p>
+    <p>Email: {{user.email}}</p>
+    {% else %}
+    <p>You are not logged in</p>
+    {% endif %} {% endcomment %}
+
+    {% endblock content %}
