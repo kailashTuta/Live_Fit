@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from .models import Account
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -50,6 +51,9 @@ def register(request):
         myuser.last_name = lname
         myuser.is_active = False
         myuser.save()
+        user = User.objects.get(username=username)
+        account = Account(user=user)
+        account.save()
         messages.success(
             request, 'User created successfully and Please Confirm your email')
 
