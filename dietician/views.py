@@ -10,15 +10,16 @@ def dietician(request):
     prediction = None
     mealplan = None
     e = None
-    global g
-    df = pd.read_csv(
-        'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet.csv', encoding='cp1252')
+    global g, d
+    df = pd.read_excel(
+        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet.xlsx')
 
-    X_train = df.loc[:, 'Gender':'Exercise']
+    cols = ['Age', 'Gender', 'Exercise', 'Diabetic']
+    X_train = df.loc[:, cols]
     Y_train = df.loc[:, 'Diet']
 
     # The actual decision tree classifier
-    tree = DecisionTreeClassifier(max_leaf_nodes=5, random_state=0)
+    tree = DecisionTreeClassifier(random_state=0)
 
     # Train the model
     tree.fit(X_train.values, Y_train.values)
@@ -27,6 +28,12 @@ def dietician(request):
         age = request.POST['age']
         gender = request.POST['gender']
         exercise = request.POST['exercise']
+        diabetic = request.POST['diabetic']
+
+        if diabetic == "no":
+            d = 1
+        elif diabetic == "yes":
+            d = 2
 
         if gender == 'Male':
             g = 1
@@ -43,8 +50,7 @@ def dietician(request):
             e = 4
         elif exercise == 'superactive':
             e = 5
-
-        prediction = tree.predict([[g, age, e]])
+        prediction = tree.predict([[g, age, e, d]])
 
         mealplan = str(prediction[0]).split('\n')
 

@@ -1,0 +1,15 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit
+{% endblock %}
+
+
+{% block content %}
+
+{% for post in posts %}
+{{ post.title }}
+{% endfor %}
+
+{% endblock content %}
