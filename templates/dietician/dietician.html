@@ -1,5 +1,6 @@
 {% extends '../base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}
 LiveFit
@@ -7,81 +8,35 @@ LiveFit
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h1 class="text-center text-white bg-dark mt-4 p-3">Get Your Diet Plan</h1>
-            <form action="/dietician" method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name"
-                        autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="number" name="age" class="form-control" id="age" placeholder="Enter your age" min="18"
-                        max="60">
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="weight">Weight</label>
-                        <input type="number" name="weight" class="form-control" id="weight"
-                            placeholder="Enter your weight in Kg">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="Height">Height</label>
-                        <input type="text" class="form-control" id="height" name="height"
-                            placeholder="Enter your height in cm">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="gender">Gender</label>
-                        <select class="form-control" name="gender" id="gender">
-                            <option>Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="exercise">Exercise</label>
-                        <select class="form-control" name="exercise" id="exercise">
-                            <option>Select</option>
-                            <option value="sedentary">Sedentary</option>
-                            <option value="lightlyactive">Lightly Active</option>
-                            <option value="moderate">Moderate</option>
-                            <option value="veryactive">Very Active</option>
-                            <option value="superactive">Super Active</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>Are You Diabetic ? </label>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="diabetic" id="exampleRadios1" value="yes"
-                                checked>
-                            <label class="form-check-label" for="yes"> Yes</label>
-                        </div>
-                        <div class="form-check-inline">
-                            <input class="form-check-input" type="radio" name="diabetic" id="exampleRadios2" value="no">
-                            <label class="form-check-label" for="no"> No</label>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-info btn-block">Submit</button>
-            </form>
+    <h1 class="text-center text-white bg-dark mt-4 p-3">Get Your Diet Plan</h1>
+    <form action="/dietician" method="POST" class="bootstrap4">
+        {% csrf_token %}
+        <div class="form-group">
+            {{form.name|as_crispy_field}}
         </div>
-        <div class="col-md-6">
-            {% if mealplan %}
-            {{bmi}}{{remark}}
-            <h1 class="text-center text-white bg-dark mt-4 p-3">Meal Plan</h1>
-            {% for mp in mealplan %}
-            {{mp}}
-            <br>
-            <br>
-            {% endfor %}
-            {% endif %}
+        <div class="form-group">
+            {{form.age|as_crispy_field}}
         </div>
-    </div>
-
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{form.height|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.weight|as_crispy_field}}
+            </div>
+        </div>
+        <div class="from-group row">
+            <div class="col-md-6">
+                {{form.gender|as_crispy_field}}
+            </div>
+            <div class="col-md-6">
+                {{form.exercise|as_crispy_field}}
+            </div>
+        </div>
+        <div class="form-group">
+            {{form.diabetic|as_crispy_field}}
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
 </div>
 {% endblock content %}
