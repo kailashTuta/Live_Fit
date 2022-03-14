@@ -1,0 +1,27 @@
+body {
+  margin: top 20px;
+  background-color: lightgrey;
+}
+.main {
+  padding: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar {
+  background-color: #333;
+  color: white;
+  height: 100%;
+}
+
+.sidebar a {
+  margin-left: 10px;
+  display: block;
+  color: white;
+  padding-bottom: 10px;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.content {
+  background-color: whitesmoke;
+}

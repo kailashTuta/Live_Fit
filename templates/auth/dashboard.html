@@ -11,7 +11,7 @@ LiveFit | Account
 
 {% block content %}
 
-<div class="container">
+<div class="container-fluid">
     <div class="main">
         <div class="row">
             <div class="col-md-4 mt-1">
@@ -24,7 +24,7 @@ LiveFit | Account
                             <h3 class="text-warning">{{user}}</h3>
                             <a href="/dashboard">Account</a>
                             <a href="">Blogs</a>
-                            <a href="">Reports</a>
+                            <a href="/reports">Reports</a>
                         </div>
                     </div>
                 </div>
@@ -86,12 +86,5 @@ LiveFit | Account
             </div>
         </div>
     </div>
-
-    {% comment %} {% if user.is_authenticated%}
-    <p>Username: {{user}}</p>
-    <p>Email: {{user.email}}</p>
-    {% else %}
-    <p>You are not logged in</p>
-    {% endif %} {% endcomment %}
-
-    {% endblock content %}
+</div>
+{% endblock content %}

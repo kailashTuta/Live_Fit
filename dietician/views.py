@@ -58,26 +58,34 @@ def dietician(request):
             mealplan = str(prediction[0]).split('\n')
             bmi = int(weight) / (int(height)/100)**2
 
-            if bmi <= 18.4:
-                remark = "You are underweight."
-            elif bmi <= 24.9:
-                remark = "You are healthy."
-            elif bmi <= 29.9:
-                rmark = "You are over weight."
-            elif bmi <= 34.9:
-                remark = "You are severely over weight."
-            elif bmi <= 39.9:
-                remark = "You are obese."
-            else:
-                remark = "You are severely obese."
             instance = form.save(commit=False)
             instance.mealplan = mealplan
             instance.user = request.user
             instance.bmi = bmi
-            instance.remark = remark
+            
+            if bmi <= 18.4:
+                instance.remark = "You are underweight."
+            elif bmi <= 24.9:
+                instance.remark = "You are healthy."
+            elif bmi <= 29.9:
+                instance.remark = "You are over weight."
+            elif bmi <= 34.9:
+                instance.remark = "You are severely over weight."
+            elif bmi <= 39.9:
+                instance.remark = "You are obese."
+            else:
+                instance.remark = "You are severely obese."
             instance.save()
             form = ReportForm()
         else:
             form = ReportForm()
     context = {'form': form}
     return render(request, 'dietician/dietician.html', context)
+
+
+def dietReport(request):
+    context = {
+        'user': request.user,
+        'reports': Report.objects.filter(user=request.user)
+    }
+    return render(request, 'dietician/report.html', context)
