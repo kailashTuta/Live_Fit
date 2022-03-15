@@ -1,0 +1,23 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Blog
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/blog/styles.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <a href="\blog"><i class="fa-solid fa-xl fa-circle-arrow-left mt-5"></i></a>
+    <h1>{{post.title}}</h1>
+    <small class="lead">By: {{post.author}}</small>
+    <hr>
+    <img class="img-fluid rounded mx-auto d-block" src="{{post.image.url}}" alt="{{post.title}}"
+        style="height:600px; width: 1400px;">
+    <p>{{post.body}}</p>
+</div>
+{% endblock content %}

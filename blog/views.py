@@ -28,3 +28,9 @@ def addBlog(request):
             form = AddBlog()
     context = {'form': form}
     return render(request, 'blog/addBlog.html', context)
+
+
+def detailBlog(request, pk):
+    post = Post.objects.get(pk=pk)
+    context = {'post': post}
+    return render(request, 'blog/blogDetails.html', context)
