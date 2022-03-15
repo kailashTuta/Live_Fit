@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.utils.text import slugify
 from .models import Post
@@ -28,6 +28,30 @@ def addBlog(request):
             form = AddBlog()
     context = {'form': form}
     return render(request, 'blog/addBlog.html', context)
+
+
+def editBlog(request, pk):
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        form = AddBlog(request.POST or None,
+                       request.FILES or None, instance=post)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.slug = slugify(instance.title)
+            instance.save()
+            return HttpResponseRedirect('/blog/dashboardBlog')
+    else:
+        post = Post.objects.get(pk=pk)
+        form = AddBlog(instance=post)
+    return render(request, 'blog/editBlog.html', {'form': form})
+
+
+def deleteBlog(request, pk):
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        print(post)
+        post.delete()
+        return HttpResponseRedirect('/blog/dashboardBlog')
 
 
 def detailBlog(request, pk):

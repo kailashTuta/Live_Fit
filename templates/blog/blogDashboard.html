@@ -50,11 +50,17 @@ LiveFit | Blogs
                                     <td>{{ forloop.counter }}</td>
                                     <td class="text-capitalize">{{post.title}}</td>
                                     <td class="text-capitalize">{{post.author}}</td>
-                                    <td><a href="/blog/{{user.pk}}" class="btn btn-warning">View</a></td>
-                                    <td><a href="#" class="btn btn-primary"><i
+                                    <td><a href="/blog/{{post.pk}}" class="btn btn-warning">View</a></td>
+                                    <td><a href="/blog/editBlog/{{post.pk}}" class="btn btn-primary"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
-                                    <td><a href="#" class="btn btn-danger"><i class="fa-solid fa-trash-alt"></i></a>
+                                    <td>
+                                        <form action="/blog/deleteBlog/{{post.pk}}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger"><i
+                                                    class="fa-solid fa-trash-alt"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

@@ -1,0 +1,18 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Add Blog
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-white text-uppercase bg-dark mt-4 p-3">Update Blog</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class="btn btn-primary btn-block" />
+    </form>
+</div>
+{% endblock content %}
