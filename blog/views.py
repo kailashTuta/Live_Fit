@@ -34,3 +34,11 @@ def detailBlog(request, pk):
     post = Post.objects.get(pk=pk)
     context = {'post': post}
     return render(request, 'blog/blogDetails.html', context)
+
+
+def dashboardBlog(request):
+    context = {
+        'user': request.user,
+        'posts': Post.objects.filter(author=request.user)
+    }
+    return render(request, 'blog/blogDashboard.html', context)

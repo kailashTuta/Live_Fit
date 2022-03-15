@@ -22,7 +22,7 @@ LiveFit | Reports
                         <div class="mt-3">
                             <h3 class="text-warning">{{user}}</h3>
                             <a href="/dashboard">Account</a>
-                            <a href="">Blogs</a>
+                            <a href="/blog/dashboardBlog">Blogs</a>
                             <a href="/reports">Reports</a>
                         </div>
                     </div>
@@ -32,65 +32,69 @@ LiveFit | Reports
                 <div class="mb-3 content">
                     <h1 class="m-3 text-center text-uppercase">Reports</h1>
                     {% if reports %}
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Height</th>
-                                <th scope="col">Weight</th>
-                                <th scope="col">BMI</th>
-                                <th scope="col">Remarks</th>
-                                <th scope="col">Diabetic</th>
-                                <th scope="col">Exercise</th>
-                                <th scope="col">Meal Plan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for report in reports %}
-                            <tr>
-                                <td class="text-capitalize">{{report.name}}</td>
-                                <td>{{report.age}}</td>
-                                <td class="text-capitalize">{{report.gender}}</td>
-                                <td>{{report.height}} cms</td>
-                                <td>{{report.weight}} kgs</td>
-                                <td>{{report.bmi}}</td>
-                                <td>{{report.remark}}</td>
-                                <td>{{report.diabetic}}</td>
-                                <td>{{report.exercise}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning report-link" data-toggle="modal"
-                                        data-target="#reportModal" data-mealplan="{{report.mealplan}}">
-                                        View
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="reportModal" tabindex="-1"
-                                        aria-labelledby="reportModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="reportModalLabel">Meal Plan</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p id="mealplan"></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">Close</button>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">S.no</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Age</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Height</th>
+                                    <th scope="col">Weight</th>
+                                    <th scope="col">BMI</th>
+                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Diabetic</th>
+                                    <th scope="col">Exercise</th>
+                                    <th scope="col">Meal Plan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for report in reports %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td class="text-capitalize">{{report.name}}</td>
+                                    <td>{{report.age}}</td>
+                                    <td class="text-capitalize">{{report.gender}}</td>
+                                    <td>{{report.height}} cms</td>
+                                    <td>{{report.weight}} kgs</td>
+                                    <td>{{report.bmi}}</td>
+                                    <td>{{report.remark}}</td>
+                                    <td>{{report.diabetic}}</td>
+                                    <td>{{report.exercise}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning report-link" data-toggle="modal"
+                                            data-target="#reportModal" data-mealplan="{{report.mealplan}}">
+                                            View
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="reportModal" tabindex="-1"
+                                            aria-labelledby="reportModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModalLabel">Meal Plan</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p id="mealplan"></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     {% else %}
                     <h3 class="text-center">No Data Available</h3>
                     {% endif %}
