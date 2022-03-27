@@ -53,11 +53,12 @@ def dietician(request):
                 e = 4
             elif exercise == 'superactive':
                 e = 5
-                
+
             prediction = tree.predict([[g, age, e, d]])
             prediction = str(prediction[0]).split('\n')
-            
+
             mealplan = prediction[:-1]
+            mealplan = "<br><br>".join(mealplan)
             exerciseplan = prediction[-1]
 
             bmi = int(weight) / (int(height)/100)**2
