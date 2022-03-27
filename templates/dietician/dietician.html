@@ -38,5 +38,11 @@ LiveFit | Dietician
         </div>
         <input type="submit" value="Submit" class="btn btn-primary btn-block">
     </form>
+    <div>
+        {% for mp in mealplan %}
+        {{mp}}
+        <br>
+        {% endfor %}
+    </div>
 </div>
 {% endblock content %}

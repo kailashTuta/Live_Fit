@@ -9,12 +9,13 @@ from .forms import ReportForm
 
 
 def dietician(request):
+    mealplan = None
     df = pd.read_excel(
-        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet.xlsx')
+        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet_W.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet_W'])
 
-    cols = ['Age', 'Gender', 'Exercise', 'Diabetic']
+    cols = ['Gender', 'Age', 'Exercise', 'Diabetic']
     X_train = df.loc[:, cols]
-    Y_train = df.loc[:, 'Diet']
+    Y_train = df.loc[:, 'Diet_W']
 
     # The actual decision tree classifier
     tree = DecisionTreeClassifier(random_state=0)
@@ -40,8 +41,9 @@ def dietician(request):
 
             if gender == 'male':
                 g = 1
-            else:
+            elif gender == 'female':
                 g = 2
+            print(g)
 
             if exercise == 'sedentary':
                 e = 1
@@ -56,30 +58,33 @@ def dietician(request):
             prediction = tree.predict([[g, age, e, d]])
 
             mealplan = str(prediction[0]).split('\n')
-            bmi = int(weight) / (int(height)/100)**2
 
-            instance = form.save(commit=False)
-            instance.mealplan = mealplan
-            instance.user = request.user
-            instance.bmi = bmi
-            
-            if bmi <= 18.4:
-                instance.remark = "You are underweight."
-            elif bmi <= 24.9:
-                instance.remark = "You are healthy."
-            elif bmi <= 29.9:
-                instance.remark = "You are over weight."
-            elif bmi <= 34.9:
-                instance.remark = "You are severely over weight."
-            elif bmi <= 39.9:
-                instance.remark = "You are obese."
-            else:
-                instance.remark = "You are severely obese."
-            instance.save()
+            print(mealplan[-1])
+
+            # bmi = int(weight) / (int(height)/100)**2
+
+            # instance = form.save(commit=False)
+            # instance.mealplan = mealplan
+            # instance.user = request.user
+            # instance.bmi = bmi
+
+            # if bmi <= 18.4:
+            #     instance.remark = "You are underweight."
+            # elif bmi <= 24.9:
+            #     instance.remark = "You are healthy."
+            # elif bmi <= 29.9:
+            #     instance.remark = "You are over weight."
+            # elif bmi <= 34.9:
+            #     instance.remark = "You are severely over weight."
+            # elif bmi <= 39.9:
+            #     instance.remark = "You are obese."
+            # else:
+            #     instance.remark = "You are severely obese."
+            # instance.save()
             form = ReportForm()
         else:
             form = ReportForm()
-    context = {'form': form}
+    context = {'form': form, 'mealplan': mealplan}
     return render(request, 'dietician/dietician.html', context)
 
 
