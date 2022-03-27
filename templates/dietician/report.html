@@ -47,6 +47,7 @@ LiveFit | Reports
                                     <th scope="col">Diabetic</th>
                                     <th scope="col">Exercise</th>
                                     <th scope="col">Meal Plan</th>
+                                    <th scope="col">Exercise Plan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,6 +91,35 @@ LiveFit | Reports
                                             </div>
                                         </div>
                                     </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning exercise-link" data-toggle="modal"
+                                            data-target="#exerciseModal" data-exerciseplan="{{report.exerciseplan}}">
+                                            View
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exerciseModal" tabindex="-1"
+                                            aria-labelledby="exerciseModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exerciseModalLabel">Exercise Plan
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p id="exerciseplan"></p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -108,6 +138,9 @@ LiveFit | Reports
     $(document).ready(function () {
         $('.report-link').click(function () {
             $('#mealplan').html($(this).data('mealplan'));
+        });
+        $('.exercise-link').click(function () {
+            $('#exerciseplan').html($(this).data('exerciseplan'));
         });
     })
 </script>

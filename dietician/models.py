@@ -16,7 +16,8 @@ class Report(models.Model):
     exercise = models.CharField(max_length=20)
     diabetic = models.CharField(max_length=10)
     remark = models.CharField(max_length=50, default=None)
-    mealplan = models.CharField(max_length=50, default=None)
+    mealplan = models.CharField(max_length=250, default=None)
+    exerciseplan = models.CharField(max_length=250, default=None)
     created_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
