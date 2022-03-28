@@ -5,6 +5,10 @@
 LiveFit
 {% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/landingpage.css' %}">
+{% endblock %}
+
 {% block content %}
 {% for msg in messages  %}
 <div class="alert {{msg.tags}} alert-dismissible fade show" role="alert">
@@ -15,11 +19,10 @@ LiveFit
 </div>
 {% endfor %}
 
-<h3>Welcome to LiveFit</h3>
-
 {% if user.is_authenticated%}
 <a href="/dietician" class="btn btn-primary">Dietician</a>
-
+{% else %}
+{% include 'partials/_landingpage.html' %}
 {% endif %}
 
 {% endblock content %}
