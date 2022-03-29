@@ -3,11 +3,10 @@ body {
   height: 100%;
   width: 100%;
   color: #fff;
-  overflow: hidden;
 }
 #home {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("/static/auth/images/landing.jpg") no-repeat 50% 50%;
+    url("/static/auth/images/landing.jpg");
   display: table;
   width: 100%;
   height: 100vh;
@@ -30,11 +29,84 @@ h3 {
   line-height: 1.2;
 }
 
+.jumbotron {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/static/auth/images/jumbotron.jpg") center center;
+  background-size: cover;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.btn-container {
+  margin-top: 12px;
+}
+.single-content {
+  position: relative;
+  transition: 0.3s;
+  box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.8);
+}
+
+.single-content .text-content,
+.single-content:after {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+}
+.single-content:after {
+  content: "";
+  display: block;
+  background: rgb(90, 88, 88);
+  top: 20px;
+  bottom: 20px;
+  opacity: 0;
+  transform: rotate3d(-1, 1, 0, 100deg);
+  transition: 0.4s;
+}
+
+.single-content:hover:after {
+  opacity: 0.9;
+  transform: rotate3d(0, 0, 0, 0deg);
+}
+
+.single-content img {
+  width: 100%;
+  height: auto;
+}
+
+.text-content {
+  top: 45%;
+  opacity: 0;
+  z-index: 1;
+  transform: translate(10%, -30%);
+  transition: 0.3s;
+  text-align: center;
+  color: #fff;
+}
+
+.single-content:hover .text-content {
+  opacity: 1;
+  transform: translate(0, -50%);
+  transition: 0.3s;
+}
+
+.text-content a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 150%;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 350%;
   }
   h3 {
     font-size: 260%;
+  }
+  #home {
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }

@@ -20,7 +20,7 @@ LiveFit
 {% endfor %}
 
 {% if user.is_authenticated%}
-<a href="/dietician" class="btn btn-primary">Dietician</a>
+{% include 'partials/_welcomePage.html' %}
 {% else %}
 {% include 'partials/_landingpage.html' %}
 {% endif %}
