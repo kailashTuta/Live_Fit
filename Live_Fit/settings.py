@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'auth',
     'dietician',
     'blog',
+    'workout_helper',
     'crispy_forms',
+    'import_export',
 ]
 
 MIDDLEWARE = [
