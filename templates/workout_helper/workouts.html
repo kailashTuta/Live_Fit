@@ -10,12 +10,12 @@ LiveFit | Workouts
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <h1 class="text-center text-white text-uppercase bg-dark mt-4 p-3">Workouts</h1>
     <div class="row">
         {% for workout in workouts %}
-        <div class="col-md-4 d-flex align-items-stretch">
-            <div class="card mt-2">
+        <div class="col-md-4 d-flex align-items-stretch mt-2 mb-2">
+            <div class="card border-warning h-100 w-100">
                 <img src="{{ workout.example }}" alt="{{ workout.exercise }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ workout.exercise }}</h5>
@@ -28,7 +28,7 @@ LiveFit | Workouts
 </div>
 
 <nav class="my-3 container">
-    <ul class="pagination">
+    <ul class="pagination flex-wrap">
         {% if workouts.has_previous %}
         <li class="page-item"><a class="page-link" href="?page={{workouts.previous_page_number}}">Previous</a></li>
         {% endif %}
