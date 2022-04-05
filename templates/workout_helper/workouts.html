@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Workouts
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/workout_helper/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-white text-uppercase bg-dark mt-4 p-3">Workouts</h1>
+    <div class="row">
+        {% for workout in workouts %}
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card mt-2">
+                <img src="{{ workout.example }}" alt="{{ workout.exercise }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ workout.exercise }}</h5>
+                    <a href="{{ workout.pk}}" class="card-link btn btn-info">View More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<nav class="my-3 container">
+    <ul class="pagination">
+        {% if workouts.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{workouts.previous_page_number}}">Previous</a></li>
+        {% endif %}
+        {% for i in workouts.paginator.page_range %}
+        {% if workouts.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if workouts.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{workouts.next_page_number}}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock content %}
