@@ -28,8 +28,6 @@ def workoutDetails(request, pk):
     else:
         notes = notes
 
-    print(workout.modifications)
-
     context = {
         'workout': workout,
         'equipment': workout.equipment.split(','),

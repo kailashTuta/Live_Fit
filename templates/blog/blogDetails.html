@@ -12,12 +12,22 @@ LiveFit | Blog
 
 {% block content %}
 <div class="container-fluid">
-    <a href="\blog"><i class="fa-solid fa-xl fa-circle-arrow-left mt-5"></i></a>
-    <h1>{{post.title}}</h1>
-    <small class="lead">By: {{post.author}}</small>
-    <hr>
-    <img class="img-fluid rounded mx-auto d-block" src="{{post.image.url}}" alt="{{post.title}}"
-        style="height:600px; width: 1400px;">
-    <p>{{post.body}}</p>
+    <a href="\blog"><i class="fa-solid fa-xl fa-circle-arrow-left mt-4"></i></a>
+    <div class="card mt-4 shadow p-3 mb-5 bg-white rounded">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="{{post.image.url}}" alt="{{post.title}}" class="card-img-top h-100 w-100">
+            </div>
+            <div class="col-md-7">
+                <h2 class="card-title">
+                    {{post.title}}
+                </h2>
+                <small class="lead">By: {{post.author}}</small>
+                <div class="card-body">
+                    <p>{{post.body}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}
