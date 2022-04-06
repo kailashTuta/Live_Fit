@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = [
     path('', views.workouts, name='workouts'),
+    path('<int:pk>/', views.workoutDetails, name='workoutDetails'),
 ]

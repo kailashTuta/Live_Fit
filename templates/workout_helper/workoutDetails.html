@@ -1,0 +1,78 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Workouts
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/workout_helper/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <a href="\workouts"><i class="fa-solid fa-xl fa-circle-arrow-left mt-4"></i></a>
+    <div class="card mt-4 shadow p-3 mb-5 bg-white rounded">
+        <div class="row no-gutters">
+            <div class="col-sm-5">
+                <img class="card-img h-100 w-100" src="{{workout.example}}" alt="{{workout.exercise}}">
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card-body">
+                            <h4>Exercise Name</h4>
+                            <p>{{workout.exercise}}</p>
+                            <hr>
+                            <h4>Equipment</h4>
+                            {% for e in equipment %}
+                            <span class="badge badge-pill badge-warning">{{e}}</span>
+                            {% endfor %}
+                            <hr>
+                            <h4>Exercise Type</h4>
+                            {% for et in exercise_type %}
+                            <span class="badge badge-pill badge-info">{{et}}</span>
+                            {% endfor %}
+                            <hr>
+                            <h4>Major Muscle</h4>
+                            {% if major_muscle %}
+                            {% for m in major_muscle %}
+                            <span class="badge badge-pill badge-success">{{m}}</span>
+                            {% endfor %}
+                            {% else %}
+                            <p>Not Available</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card-body">
+                            <h4>Minor Muscle</h4>
+                            {% if minor_muscle %}
+                            {% for m in minor_muscle %}
+                            <span class="badge badge-pill badge-primary">{{m}}</span>
+                            {% endfor %}
+                            {% else %}
+                            <p>Not Available</p>
+                            {% endif %}
+                            <hr>
+                            <h4>Notes</h4>
+                            {% if notes %}
+                            <p>{{notes}}</p>
+                            {% else %}
+                            <p>Not Available</p>
+                            {% endif %}
+                            <hr>
+                            <h4>Modifications</h4>
+                            {% if workout.modifications %}
+                            <p>{{workout.modifications}}</p>
+                            {% else %}
+                            <p>Not Available</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -14,7 +14,7 @@ class Workout(models.Model):
         max_length=200, default=None, null=True, blank=True)
     notes = models.CharField(
         max_length=200, default=None, null=True, blank=True)
-    modification = models.CharField(
+    modifications = models.CharField(
         max_length=200, default=None, null=True, blank=True)
 
     def __str__(self):
