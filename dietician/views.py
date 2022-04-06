@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 import numpy as np
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
@@ -8,6 +9,7 @@ from .forms import ReportForm
 # Create your views here.
 
 
+@login_required(login_url='login')
 def dietician(request):
     df = pd.read_excel(
         r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet_W.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet_W'])
@@ -89,6 +91,7 @@ def dietician(request):
     return render(request, 'dietician/dietician.html', context)
 
 
+@login_required(login_url='login')
 def dietReport(request):
     context = {
         'user': request.user,

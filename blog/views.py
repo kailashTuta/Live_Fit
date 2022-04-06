@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.utils.text import slugify
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import AddBlog
 
 # Create your views here.
 
 
+@login_required(login_url='login')
 def blogView(request):
     posts = Post.objects.all()
     return render(request, 'blog/blog.html', {'posts': posts})
 
 
+@login_required(login_url='login')
 def addBlog(request):
     form = AddBlog(request.POST or None, request.FILES or None)
     if request.method == 'POST':
@@ -30,6 +33,7 @@ def addBlog(request):
     return render(request, 'blog/addBlog.html', context)
 
 
+@login_required(login_url='login')
 def editBlog(request, pk):
     if request.method == 'POST':
         post = Post.objects.get(pk=pk)
@@ -54,12 +58,14 @@ def deleteBlog(request, pk):
         return HttpResponseRedirect('/blog/dashboardBlog')
 
 
+@login_required(login_url='login')
 def detailBlog(request, pk):
     post = Post.objects.get(pk=pk)
     context = {'post': post}
     return render(request, 'blog/blogDetails.html', context)
 
 
+@login_required(login_url='login')
 def dashboardBlog(request):
     context = {
         'user': request.user,

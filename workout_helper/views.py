@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import Workout
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
-
+@login_required(login_url='login')
 def workouts(request):
     workouts = Workout.objects.all().order_by('id')
     paginator = Paginator(workouts, 12)
@@ -14,6 +16,7 @@ def workouts(request):
     return render(request, 'workout_helper/workouts.html', context)
 
 
+@login_required(login_url='login')
 def workoutDetails(request, pk):
     workout = Workout.objects.get(pk=pk)
     minor_muscle = workout.minor_muscle
