@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Staatliches&display=swap");
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+}
+
+h1 {
+  font-family: "Staatliches", cursive;
+}
+
+#welcome-title {
+  font-size: 6rem;
+  line-height: 0.9;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.border {
+  height: 4px;
+  width: 180px;
+  background: #4bc0d9;
+  margin: 15px auto;
+}
+
+.jumbotron {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/static/auth/images/jumbotron.jpg") center center;
+  background-size: cover;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.top-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-container {
+  display: flex;
+  width: 100vh;
+}
+
+#card1 {
+  background-image: url("/static/auth/images/dietician.jpg");
+}
+
+#card2 {
+  background-image: url("/static/auth/images/workout.jpg");
+}
+
+#card3 {
+  background-image: url("/static/auth/images/ayurvedic.jpg");
+}
+
+.panel {
+  background-size: cover;
+  background-position-x: center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  margin: 10px;
+  position: relative;
+  transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+  font-size: 24px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  opacity: 1;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    width: 100vw;
+  }
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+}

@@ -1,7 +1,18 @@
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/welcomepage.css' %}">
+{% endblock %}
+
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <h1 class="text-white">Welcome to Live Fit</h1>
+        <h1 class="text-white display-3" id="welcome-title">Welcome to Live Fit</h1>
     </div>
+</div>
+
+<div class="container">
+    <h1 class="text-dark text-center display-4">Explore</h1>
+    <div class="border"></div>
 </div>
 
 <div class="top-container">
