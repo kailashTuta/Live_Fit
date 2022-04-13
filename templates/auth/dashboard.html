@@ -72,16 +72,46 @@ LiveFit | Account
                 </div>
                 <div class="card mb-3 content">
                     <h1 class="m-3 text-uppercase">Recent Blogs</h1>
+                    {% if posts %}
+                    {% for post in posts %}
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Blog Title</h5>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                blog description
-                            </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">S.no</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Author</th>
+                                        <th scope="col">View</th>
+                                        <th scope="col">Edit</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for post in posts %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td class="text-capitalize">{{post.title}}</td>
+                                        <td class="text-capitalize">{{post.author}}</td>
+                                        <td><a href="/blog/{{post.pk}}" class="btn btn-warning">View</a></td>
+                                        <td><a href="/blog/editBlog/{{post.pk}}" class="btn btn-primary"><i
+                                                    class="fa-solid fa-pen-to-square"></i></a>
+                                        </td>
+                                        <td>
+                                            <form action="/blog/deleteBlog/{{post.pk}}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fa-solid fa-trash-alt"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

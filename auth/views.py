@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .models import Account
+from blog.models import Post
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -129,7 +130,9 @@ def activate(request, uidb64, token):
 
 @login_required(login_url='login')
 def dashboard(request):
+    posts = Post.objects.filter(author=request.user).order_by('-pk')[:2]
     context = {
-        'user': request.user
+        'user': request.user,
+        'posts': posts
     }
     return render(request, 'auth/dashboard.html', context)

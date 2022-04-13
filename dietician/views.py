@@ -12,11 +12,11 @@ from .forms import ReportForm
 @login_required(login_url='login')
 def dietician(request):
     df = pd.read_excel(
-        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet_W.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet_W'])
+        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet', 'Workouts'])
 
     cols = ['Gender', 'Age', 'Exercise', 'Diabetic']
     X_train = df.loc[:, cols]
-    Y_train = df.loc[:, 'Diet_W']
+    Y_train = df.loc[:, ['Diet', 'Workouts']]
 
     # The actual decision tree classifier
     tree = DecisionTreeClassifier(random_state=0)
@@ -57,11 +57,12 @@ def dietician(request):
                 e = 5
 
             prediction = tree.predict([[g, age, e, d]])
-            prediction = str(prediction[0]).split('\n')
+            # print(prediction[0][0])
+            # print(prediction[0][1])
 
-            mealplan = prediction[:-1]
+            mealplan = prediction[0][0].split('\n')
             mealplan = "<br><br>".join(mealplan)
-            exerciseplan = prediction[-1]
+            exerciseplan = prediction[0][1]
 
             bmi = int(weight) / (int(height)/100)**2
 
