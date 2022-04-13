@@ -13,6 +13,18 @@ LiveFit | Workouts
 <div class="container-fluid">
     <h1 class="text-center text-white text-uppercase bg-dark mt-4 p-3">Workouts</h1>
     <div class="row">
+        <div class="col-sm-12 col-md-4 offset-md-8">
+            <form>
+                <div class="input-group">
+                    <input type="text" name="q" placeholder="Search" class="form-control form-control-lg">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark btn-lg" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
         {% for workout in workouts %}
         <div class="col-md-3 d-flex align-items-stretch mt-2 mb-2">
             <div class="card border-info h-100 w-100 shadow p-3 bg-white rounded">

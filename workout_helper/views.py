@@ -8,7 +8,11 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def workouts(request):
-    workouts = Workout.objects.all().order_by('id')
+    if 'q' in request.GET:
+        q = request.GET['q']
+        workouts = Workout.objects.filter(exercise__icontains=q).order_by('id')
+    else:
+        workouts = Workout.objects.all().order_by('id')
     paginator = Paginator(workouts, 12)
     page_num = request.GET.get('page', 1)
     workouts = paginator.get_page(page_num)
