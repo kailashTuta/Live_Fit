@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Ayurvedic Tips
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/ayurvedic_tips/styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center text-white text-uppercase bg-dark mt-4 p-3">Ayurvedic Tips</h1>
+    <div class="row">
+        {% for tip in ayurvedicTips %}
+        <div class="col-md-3 d-flex align-items-stretch mt-2 mb-2">
+            <div class="card border-info h-100 w-100 shadow p-3 bg-white rounded">
+                <img src="{{ tip.image }}" alt="{{ tip.title }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title ">{{ tip.title }}</h5>
+                    <a href="{{ tip.pk}}" class="card-link btn btn-info">View More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<nav class="my-3 container">
+    <ul class="pagination justify-content-center flex-wrap">
+        {% if ayurvedicTips.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ayurvedicTips.previous_page_number}}">Previous</a></li>
+        {% endif %}
+        {% for i in ayurvedicTips.paginator.page_range %}
+        {% if ayurvedicTips.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if ayurvedicTips.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ayurvedicTips.next_page_number}}">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock content %}

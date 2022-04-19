@@ -1,0 +1,32 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}
+LiveFit | Ayurvedic Tips
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static '/ayurvedic_tips/styles.css' %}" />
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <a href="\ayurveda"><i class="fa-solid fa-xl fa-circle-arrow-left mt-4"></i></a>
+    <div class="card mt-4 shadow p-3 mb-5 bg-white rounded">
+        <div class="row">
+            <div class="col-md-5">
+                <img src="{{tip.image}}" alt="{{tip.title}}" class="card-img-top h-100 w-100">
+            </div>
+            <div class="col-md-7">
+                <h2 class="card-title">
+                    {{tip.title}}
+                </h2>
+                <div class="card-body">
+                    <p>{{tip.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

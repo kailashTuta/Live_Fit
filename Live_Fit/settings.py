@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'dietician',
     'blog',
     'workout_helper',
+    'ayurvedic_tips',
     'crispy_forms',
     'import_export',
 ]

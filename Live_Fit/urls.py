@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('dietician.urls')),
     path('blog/', include('blog.urls')),
     path('workouts/', include('workout_helper.urls')),
+    path('ayurveda/', include('ayurvedic_tips.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
