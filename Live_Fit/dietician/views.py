@@ -11,8 +11,7 @@ from .forms import ReportForm
 
 @login_required(login_url='login')
 def dietician(request):
-    df = pd.read_excel(
-        r'D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Live_Fit\media\Diet.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet', 'Workouts'])
+    df = pd.read_excel(r'D:\Projects\Python\Django\Live_Fit\Live_Fit\media\Diet.xlsx', usecols=['Age', 'Gender', 'Exercise', 'Diabetic', 'Diet', 'Workouts'])
 
     cols = ['Gender', 'Age', 'Exercise', 'Diabetic']
     X_train = df.loc[:, cols]

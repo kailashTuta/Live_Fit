@@ -1,4 +1,4 @@
-#!D:\Study Material\SEM 8\CSE 445\Capstone Project\Capstone_Project\Scripts\python.exe
+#!D:\Projects\Python\Django\Live_Fit\Scripts\python.exe
 # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
 # This script is part of the xlrd package, which is released under a
 # BSD-style licence.

@@ -16,10 +16,8 @@ from .tokens import generate_token
 
 # Create your views here.
 
-
 def home(request):
     return render(request, 'auth/index.html')
-
 
 def register(request):
     if request.method == 'POST':
@@ -50,42 +48,14 @@ def register(request):
             username=username, email=email, password=password)
         myuser.first_name = fname
         myuser.last_name = lname
-        myuser.is_active = False
         myuser.save()
         user = User.objects.get(username=username)
         account = Account(user=user)
         account.save()
-        messages.success(
-            request, 'User created successfully and Please Confirm your email')
-
-        # Welcome Email
-        subject = "Welcome to Live Fit"
-        message = "Hello " + myuser.first_name + "!! \n" + \
-            "Welcome to Live Fit \n Thanks for signing up \n we have also sent you a confirmation email, please confirm your email adddress to complete your activation of account. \n\n Thanking You\n Live Fit Team"
-        from_email = settings.EMAIL_HOST_USER
-        to_list = [myuser.email]
-        send_mail(subject, message, from_email, to_list, fail_silently=True)
-
-        # Email Address Confimrmation mail
-        current_site = get_current_site(request)
-        email_subject = "Confirm your email @ LiveFit"
-        message2 = render_to_string('mail/email_confirmation.html', {
-            'name': myuser.first_name,
-            'domain': current_site.domain,
-            'uid': force_str(urlsafe_base64_encode(force_bytes(myuser.pk))),
-            'token': generate_token.make_token(myuser),
-        })
-        email = EmailMessage(
-            email_subject,
-            message2,
-            settings.EMAIL_HOST_USER,
-            [myuser.email])
-        email.fail_silently = True
-        email.send()
+        messages.success(request, 'User created successfully')
 
         return redirect('login')
     return render(request, 'auth/register.html')
-
 
 def login(request):
     if request.method == 'POST':
@@ -104,29 +74,10 @@ def login(request):
 
     return render(request, 'auth/login.html')
 
-
 def logout(request):
     auth_logout(request)
     messages.success(request, 'Logged out successfully')
     return redirect('home')
-
-
-def activate(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        myuser = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        myuser = None
-    if myuser is not None and generate_token.check_token(myuser, token):
-        myuser.is_active = True
-        myuser.save()
-        auth_login(request, myuser)
-        messages.success(request, 'Account activated successfully')
-        return redirect('home')
-    else:
-        messages.error(request, 'Invalid activation link')
-        return render(request, 'mail/activation_failed.html')
-
 
 @login_required(login_url='login')
 def dashboard(request):

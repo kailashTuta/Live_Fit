@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'workout_helper',
     'ayurvedic_tips',
     'crispy_forms',
+    'crispy_bootstrap4',
     'import_export',
 ]
 
@@ -94,6 +95,7 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-danger',
 }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
